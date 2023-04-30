@@ -114,7 +114,7 @@
           </Alert>
         {/if}
     </div>
-    {#if codeOutput?.compile}
+    {#if codeOutput?.compile?.output}
     <Alert color="yellow">
       The selected language required compilation so here is the output 👇
     </Alert>
