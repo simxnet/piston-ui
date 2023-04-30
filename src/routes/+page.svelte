@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Alert, Button, Badge, Heading, Input, Label, P, Select, Textarea } from 'flowbite-svelte';
+    import { Alert, Button, Badge, Heading, Input, Label, P, Select } from 'flowbite-svelte';
     import type { PistonExecuteData, PistonExecuteResult, PistonRuntime } from '../lib/types';
     import { onMount } from 'svelte';
     import CodeMirror from "../lib/components/CodeMirror.svelte";
