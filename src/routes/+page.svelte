@@ -19,6 +19,11 @@
         return;
       }
 
+      if (!options.files[0].content || options.files[0].content === "") {
+        error = "Please type some code first!"
+        return;
+      }
+
       const response = await fetch("https://emkc.org/api/v2/piston/execute", {
         headers: {
           'Content-Type': 'application/json'
@@ -59,12 +64,6 @@
     </div>
     <Heading>Piston UI</Heading>
     <P>A web interface to interact with Piston api</P>
-    {#if error}
-      <Alert dismissable class="my-5">
-        {error}
-      </Alert>
-    {/if}
-
     <Alert dismissable class="my-5">
         <span slot="icon"><svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
         </span>
@@ -99,7 +98,12 @@
         </div>
         <Button on:click={async () => await execute()}>Execute</Button>
     </div>
-    <div class="my-5 w-full bg-zinc-900 p-5 rounded-xl text-white">
+    {#if error}
+      <Alert dismissable color="red" class="my-5">
+        {error}
+      </Alert>
+    {/if}
+    <div class="w-full bg-zinc-900 p-5 rounded-xl text-white">
         {#if codeOutput}
              <div class="code">
                 {codeOutput.run.output}
@@ -114,7 +118,7 @@
     <Alert color="yellow">
       The selected language required compilation so here is the output 👇
     </Alert>
-    <div class="mb-5 w-full bg-zinc-900 p-5 rounded-xl text-white">
+    <div class="my-5 w-full bg-zinc-900 p-5 rounded-xl text-white">
       <div class="code">
         {codeOutput.compile.output}
      </div>
